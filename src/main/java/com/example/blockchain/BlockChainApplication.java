@@ -8,6 +8,14 @@ public class BlockChainApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(BlockChainApplication.class, args);
-    }
 
+        BlockChain blockChain = new BlockChain();
+
+        blockChain.addBlock("2nd Block", blockChain.getLatestBlock().getHash());
+        blockChain.addBlock("3rd Block", blockChain.getLatestBlock().getHash());
+
+        for (Block block : blockChain.blockChain) {
+            System.out.println(block.toString());
+        }
+    }
 }

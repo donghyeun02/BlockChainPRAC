@@ -41,6 +41,15 @@ public class Block {
         return timeStamp;
     }
 
+    public int getNonce() {
+        return nonce;
+    }
+
+    public void setData(String data) {
+        this.data = data;
+        this.hash = calculateHash();
+    }
+
     @Override
     public String toString() {
         return String.format("Block Hash : %s%nPrevious Hash : %s%nData : %s%nTimestamp : %d%nNonce: %d%n",

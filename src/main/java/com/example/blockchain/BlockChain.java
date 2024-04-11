@@ -20,7 +20,7 @@ public class BlockChain {
             block = new Block(data, blockChain.get(blockChain.size() - 1).getHash());
             block.mineBlock(difficulty);
         }
-        System.out.println("\n" + block.toString());
+        System.out.println("\n" + block);
         blockChain.add(block);
     }
 

@@ -1,7 +1,6 @@
 package com.example.blockchain;
 
 import java.security.MessageDigest;
-import org.apache.logging.log4j.message.Message;
 
 public class BlockChainUtils {
     public static String generateHash (String ... inputValues) {

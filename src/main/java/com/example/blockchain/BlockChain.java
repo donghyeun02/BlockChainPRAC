@@ -3,16 +3,29 @@ package com.example.blockchain;
 import java.util.ArrayList;
 
 public class BlockChain {
-    public ArrayList<Block> blockChain;
+    private ArrayList<Block> blockChain;
+    private int difficulty;
 
     public BlockChain() {
         blockChain = new ArrayList<>();
+        difficulty = 5;
         addBlock("Genesis Block", "0");
     }
 
     public void addBlock(String data, String previousHash) {
-        Block block = new Block(data, previousHash);
+        Block block;
+        if (blockChain.isEmpty()) {
+            block = new Block(data, previousHash);
+        } else {
+            block = new Block(data, blockChain.get(blockChain.size() - 1).getHash());
+            block.mineBlock(difficulty);
+        }
+        System.out.println("\n" + block.toString());
         blockChain.add(block);
+    }
+
+    public ArrayList<Block> getBlockChain() {
+        return blockChain;
     }
 
     public Block getLatestBlock() {

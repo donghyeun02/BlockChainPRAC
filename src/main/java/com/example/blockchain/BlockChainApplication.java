@@ -11,11 +11,11 @@ public class BlockChainApplication {
 
         BlockChain blockChain = new BlockChain();
 
-        blockChain.addBlock("2nd Block", blockChain.getLatestBlock().getHash());
-        blockChain.addBlock("3rd Block", blockChain.getLatestBlock().getHash());
+        for (int i = 2; i < 4; i++) {
+            String data = String.format("Block %d", i);
+            String previousHash = blockChain.getLatestBlock().getHash();
 
-        for (Block block : blockChain.blockChain) {
-            System.out.println(block.toString());
+            blockChain.addBlock(data, previousHash);
         }
 
         System.out.println("Is blockchain valid? " + blockChain.isChainValid());

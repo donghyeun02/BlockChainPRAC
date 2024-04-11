@@ -7,6 +7,7 @@ public class Block {
     public String previousHash;
     private String data;
     private long timeStamp;
+    private int nonce;
 
     public Block(String data, String previousHash) {
         this.data = data;
@@ -19,7 +20,8 @@ public class Block {
         return BlockChainUtils.generateHash(
                 previousHash,
                 Long.toString(timeStamp),
-                data
+                data,
+                Integer.toString(nonce)
         );
     }
 
@@ -41,7 +43,16 @@ public class Block {
 
     @Override
     public String toString() {
-        return String.format("Block Hash : %s%n Previous Hash : %s%n Data : %s%n Timestamp : %d%n",
-                hash, previousHash, data, timeStamp);
+        return String.format("Block Hash : %s%nPrevious Hash : %s%nData : %s%nTimestamp : %d%nNonce: %d%n",
+                hash, previousHash, data, timeStamp, nonce);
+    }
+
+    public void mineBlock(int difficulty) {
+        String target = new String(new char[difficulty]).replace('\0', '0');
+        while (!hash.substring(0, difficulty).equals(target)) {
+            nonce++;
+            hash = calculateHash();
+        }
+        System.out.println("Mined ! : " + hash);
     }
 }

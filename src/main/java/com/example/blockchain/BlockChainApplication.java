@@ -17,5 +17,7 @@ public class BlockChainApplication {
         for (Block block : blockChain.blockChain) {
             System.out.println(block.toString());
         }
+
+        System.out.println("Is blockchain valid? " + blockChain.isChainValid());
     }
 }
